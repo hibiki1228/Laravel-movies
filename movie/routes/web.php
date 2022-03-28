@@ -1,7 +1,7 @@
 <?php
 
-use App\Http\Controllers\MovieController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\MovieController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,8 +18,17 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/movies', [MovieController::class, 'index'])->name('movies.index');
+Route::prefix("movies")->group(function () {
+    Route::get('', [MovieController::class, 'index'])->name('movies.index');
+    Route::get('/show/{movie_id}', [MovieController::class, 'show'])->name('movies.show');
+    Route::get('/create', [MovieController::class, 'create'])->name('movies.create');
+    Route::get('/edit/{movie_id}', [MovieController::class, 'edit'])->name('movies.edit');
+    Route::get('/delete/{movie_id}', [MovieController::class, 'deleteMovie'])->name('movies.delete');
+    Route::post('/store', [MovieController::class, 'store'])->name('movies.store');
+});
 
-// Route::get('/create', function () {
-//     return view('create');
+// Route::group(['prefix' => '/admin', 'as' => 'admin.'], function () {
+//     Route::group(['prefix' => '/movies', 'as' => 'movies.'], function () {
+//         require __DIR__ . '/api/movie.php';
+//     });
 // });
