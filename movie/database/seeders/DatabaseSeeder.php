@@ -3,7 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use App\Models\Movies;
+use App\Models\Movie;
 
 class DatabaseSeeder extends Seeder
 {
@@ -14,6 +14,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        Movies::factory(30)->create();
+        Movie::factory(30)->create();
     }
 }
