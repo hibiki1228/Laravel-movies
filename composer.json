@@ -1,0 +1,5 @@
+{
+    "require": {
+        "vinkla/hashids": "^10.0"
+    }
+}
